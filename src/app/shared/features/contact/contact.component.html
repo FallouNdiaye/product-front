@@ -1,0 +1,35 @@
+<div class="m-2">
+  <h2>Contactez-nous</h2>
+  <form #contactForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="!isSubmitted; else successMessage">
+    <div class="form-field">
+      <label for="email">Email</label>
+      <input
+        pInputText
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="email"
+        required
+        email
+      />
+    </div>
+    <div class="form-field">
+      <label for="message">Message</label>
+      <textarea
+        pInputTextarea
+        id="message"
+        name="message"
+        rows="5"
+        cols="30"
+        [(ngModel)]="message"
+        required
+        [maxlength]="300"
+      ></textarea>
+      <small>{{ message.length || 0 }}/300 caractères</small>
+    </div>
+    <p-button type="submit" [disabled]="!contactForm.valid" label="Envoyer" severity="success" />
+  </form>
+  <ng-template #successMessage>
+    <p-message severity="success" text="Demande de contact envoyée avec succès" />
+  </ng-template>
+</div>

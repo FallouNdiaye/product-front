@@ -1,0 +1,23 @@
+<div class="m-2">
+  <h2>Mon Panier</h2>
+  <!-- Debug: Log cart state -->
+ 
+  @if (cart().items.length) {
+    @for (item of cart().items; track item.id) {
+      <!-- Debug to verify item is received -->
+     
+      <p-card class="mb-2">
+        <div class="flex justify-content-between align-items-center">
+          <div>
+            <h3>{{ item.product.name }}</h3>
+            <p>Prix : {{ item.product.price | currency:'EUR' }}</p>
+            <p>Quantité: {{ item.quantity }}</p>
+          </div>
+          <p-button icon="pi pi-trash" severity="danger" (click)="onRemove(item.product.id)" label="Supprimer" />
+        </div>
+      </p-card>
+    }
+  } @else {
+    <p>Votre panier est vide.</p>
+  }
+</div>
